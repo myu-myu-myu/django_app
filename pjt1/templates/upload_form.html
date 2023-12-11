@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <form method="post" enctype="multipart/form-data" action="" >
+    {% csrf_token %}
+
+            <div class="card">
+                <div class="card-header">
+                    フォーム
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="skater" class="col-sm-2 col-form-label">お名前</label>
+                        <div class="col-sm-10 form-inline">
+                            <input type="text" class="form-control" id="skater" name="skater" placeholder="ニックネーム可"/>
+                            <font color="red">{{ form.skater.errors }}</font>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-2 col-form-label">曲名</label>
+                        <div class="col-sm-10 form-inline">
+                            <input type="text" class="form-control" id="title" name="title">
+                            <font color="red">{{ form.title.errors }}</font>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="length" class="col-sm-2 col-form-label">曲の分数</label>
+                        <div class="col-sm-10 form-inline">
+                            <input type="number" class="form-control" id="length" name="length" placeholder="例 : 2分半 → 2分">
+                            <font color="red">{{ form.length.errors }}</font>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="music" class="col-sm-2 col-form-label">アップロード</label>
+                        <div class="col-sm-10">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="music" name="music">
+                                <label type="file" class="custom-file-label" for="music">
+                                  {% if form.music %}
+                                  ファイルが選択されました
+                                  {% else %}
+                                  ファイルを選択してください
+                                  {% endif %}
+                                </label>
+                            </div>
+                            <font color="red">{{ form.music.errors }}</font>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">登録</button>
+                    <a href="{% url 'music_list' %}" class="btn btn-secondary">キャンセル</a>
+                </div>
+            </div>
+
+  </form>
+{% endblock %}

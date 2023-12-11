@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% block content_header %}
+    <h4>貸切までにご自身の曲を登録してください。</h4>
+    <p>
+      <a href="{% url 'upload_music' %}" class="btn btn-primary">新規登録</a>
+    </p>
+  {% endblock %}
+
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>滑走順</th>
+        <th>お名前</th>
+        <th>曲名</th>
+        <th>分数</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in playlists %}
+        <tr>
+          <td>
+            {{ i.order }}
+          </td>
+          <td>{{ i.skater }}</td>
+          <td>{{ i.title }}</td>
+          <td>{{ i.length }}分</td>
+          <td>
+            <a href="{{ i.music.url }}" class="btn btn-success btn-sm" target="_blank">
+              再生
+            </a>
+          </td>
+          <td>
+            <form method="post" action="{% url 'delete_music' i.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">削除</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
