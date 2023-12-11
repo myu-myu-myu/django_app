@@ -53,7 +53,8 @@ ROOT_URLCONF = 'pjt1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'pjt1/templates'],
+        # 'DIRS': [BASE_DIR / 'pjt1/templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), BASE_DIR / 'pjt1/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,7 +119,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'pjt1/static'
+    BASE_DIR / 'pjt1/static',
+    BASE_DIR / 'static',
 ]
 
 # Default primary key field type

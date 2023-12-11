@@ -8,7 +8,7 @@ class Home(TemplateView):
     template_name = 'home.html'
 
 def music_list(request):
-    playlists = Music.objects.all()
+    playlists = Music.objects.all().order_by('order') 
     return render(request, 'music_list.html', {
         'playlists': playlists
     })
@@ -16,7 +16,7 @@ def music_list(request):
 def upload_music(request):
     if request.method == 'POST':
         form = MusicForm(request.POST, request.FILES)
-        print(form)
+        # print(form)
         if form.is_valid():
             form.save()
             return redirect('music_list')

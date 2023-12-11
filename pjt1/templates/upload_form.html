@@ -40,11 +40,7 @@
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="music" name="music">
                                 <label type="file" class="custom-file-label" for="music">
-                                  {% if form.music %}
-                                  ファイルが選択されました
-                                  {% else %}
                                   ファイルを選択してください
-                                  {% endif %}
                                 </label>
                             </div>
                             <font color="red">{{ form.music.errors }}</font>
